@@ -271,8 +271,6 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
         {
             [self addSubview:self.verticalSelectionView];
         }
-        
-        self.verticalSelectionView.transform = self.inverted ? CGAffineTransformMakeScale(1.0, -1.0) : CGAffineTransformIdentity;
     };
     
     createDataDictionaries();
@@ -332,54 +330,19 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     void (^updateBarView)(UIView *barView, BOOL popBar);
     
     updateBarView = ^(UIView *barView, BOOL popBar) {
-        if (weakSelf.inverted)
-        {
-            if (weakSelf.state == JBChartViewStateExpanded)
-            {
-                if (popBar)
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.headerView.frame.size.height + weakSelf.headerPadding, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
-                }
-                else
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.headerView.frame.size.height + weakSelf.headerPadding, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue]);
-                }
+       if (weakSelf.state == JBChartViewStateExpanded) {
+            if (popBar) {
+                barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] - kJBBarChartViewStatePopOffset, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
+
+            } else {
+                barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue], barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue]);
             }
-            else if (weakSelf.state == JBChartViewStateCollapsed)
-            {
-                if (popBar)
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.headerView.frame.size.height + weakSelf.headerPadding, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
-                }
-                else
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.headerView.frame.size.height + weakSelf.headerPadding, barView.frame.size.width, 0.0f);
-                }
-            }
-        }
-        else
-        {
-            if (weakSelf.state == JBChartViewStateExpanded)
-            {
-                if (popBar)
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] - kJBBarChartViewStatePopOffset, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
-                }
-                else
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue], barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue]);
-                }
-            }
-            else if (weakSelf.state == JBChartViewStateCollapsed)
-            {
-                if (popBar)
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] - kJBBarChartViewStatePopOffset, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
-                }
-                else
-                {
-                    barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height, barView.frame.size.width, 0.0f);
-                }
+        } else if (weakSelf.state == JBChartViewStateCollapsed) {
+            if (popBar) {
+                barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height - weakSelf.footerView.frame.size.height - weakSelf.footerPadding - [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] - kJBBarChartViewStatePopOffset, barView.frame.size.width, [[weakSelf.cachedBarViewHeights objectAtIndex:barView.tag] floatValue] + kJBBarChartViewStatePopOffset);
+
+            } else {
+                barView.frame = CGRectMake(barView.frame.origin.x, weakSelf.bounds.size.height, barView.frame.size.width, 0.0f);
             }
         }
     };

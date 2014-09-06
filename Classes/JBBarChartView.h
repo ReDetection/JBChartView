@@ -127,13 +127,4 @@
  */
 @property (nonatomic, assign) BOOL showsVerticalSelection;
 
-/*
- *  Bars can be (vertically) positoned top to bottom instead of bottom up.
- *  If this property is set to YES, both the bar and the selection view will be inverted.
- *  For the inverted orientation to take effect, reloadData must be called.
- *
- *  Default: NO.
- */
-@property (nonatomic, assign, getter=isInverted) BOOL inverted;
-
 @end
