@@ -23,8 +23,7 @@ CGFloat const kJBBarChartViewControllerChartFooterHeight = 25.0f;
 CGFloat const kJBBarChartViewControllerChartFooterPadding = 5.0f;
 CGFloat const kJBBarChartViewControllerBarPadding = 1.0f;
 NSInteger const kJBBarChartViewControllerNumBars = 12;
-NSInteger const kJBBarChartViewControllerMaxBarHeight = 10;
-NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
+NSInteger const kJBBarChartViewControllerTolerance = 10;
 
 // Strings
 NSString * const kJBBarChartViewControllerNavButtonViewKey = @"view";
@@ -85,9 +84,9 @@ NSString * const kJBBarChartViewControllerNavButtonViewKey = @"view";
     NSMutableArray *mutableChartData = [NSMutableArray array];
     for (int i=0; i<kJBBarChartViewControllerNumBars; i++)
     {
-        NSInteger delta = (kJBBarChartViewControllerNumBars - abs((kJBBarChartViewControllerNumBars - i) - i)) + 2;
-        [mutableChartData addObject:[NSNumber numberWithFloat:MAX((delta * kJBBarChartViewControllerMinBarHeight), arc4random() % (delta * kJBBarChartViewControllerMaxBarHeight))]];
-
+        CGFloat delta = (kJBBarChartViewControllerNumBars - abs(kJBBarChartViewControllerNumBars - i - i)) - 5.f;
+        NSInteger tolerance = (arc4random() % (kJBBarChartViewControllerTolerance * 2) ) - kJBBarChartViewControllerTolerance;
+        [mutableChartData addObject:@(delta * 6.f + tolerance)];
     }
     _chartData = [NSArray arrayWithArray:mutableChartData];
     _monthlySymbols = [[[NSDateFormatter alloc] init] shortMonthSymbols];
@@ -158,8 +157,8 @@ NSString * const kJBBarChartViewControllerNavButtonViewKey = @"view";
 
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
-    NSNumber *valueNumber = [self.chartData objectAtIndex:index];
-    [self.informationView setValueText:[NSString stringWithFormat:kJBStringLabelDegreesFahrenheit, [valueNumber intValue], kJBStringLabelDegreeSymbol] unitText:nil];
+    NSNumber *valueNumber = (self.chartData)[index];
+    [self.informationView setValueText:[NSString stringWithFormat:kJBStringLabelDegreesCelsius, [valueNumber intValue], kJBStringLabelDegreeSymbol] unitText:nil];
     [self.informationView setTitleText:kJBStringLabelWorldwideAverage];
     [self.informationView setHidden:NO animated:YES];
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];

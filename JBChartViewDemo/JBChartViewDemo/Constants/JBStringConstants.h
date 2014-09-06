@@ -17,7 +17,7 @@
 #define kJBStringLabelWorldwide2012 localize(@"label.worldwide.2013", @"Worldwide - 2012")
 #define kJBStringLabelWorldwide2011 localize(@"label.worldwide.2013", @"Worldwide - 2011")
 #define kJBStringLabelWorldwideAverage localize(@"label.worldwide.average", @"Worldwide Average")
-#define kJBStringLabelDegreesFahrenheit localize(@"label.degrees.fahrenheit", @"%d%@F")
+#define kJBStringLabelDegreesCelsius localize(@"label.degrees.celsius", @"%d%@C")
 #define kJBStringLabelDegreeSymbol localize(@"label.degree.symbol", @"\u00B0")
 
 #pragma mark - Labels (Line Chart)

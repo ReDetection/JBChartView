@@ -1,7 +1,9 @@
+This fork has support for negative values
+
 # JBChartView
 <br/>
 <p align="center">	
-	<img src="https://raw.github.com/Jawbone/JBChartView/master/Screenshots/main.jpg">
+	<img src="https://raw.github.com/ReDetection/JBChartView/negative-values/Screenshots/main.jpg">
 </p>
 
 Introducing <b>JBChartView - </b> Jawbone's iOS-based charting library for both line and bar graphs. It is easy to set-up, and highly customizable. 
@@ -13,8 +15,9 @@ Introducing <b>JBChartView - </b> Jawbone's iOS-based charting library for both 
 - Simple to use protocols modeled after a UITableView.
 - Highly customizable.
 - Expand & collapse animation support.
+- Works fine with negative values.
 
-Refer to the <a href="https://github.com/Jawbone/JBChartView/blob/master/CHANGELOG.md"">changelog</a> for an overview of JBChartView's feature history.
+Refer to the <a href="https://github.com/ReDetection/JBChartView/blob/negative-values/CHANGELOG.md"">changelog</a> for an overview of JBChartView's feature history.
 
 ## Requirements
 
@@ -50,7 +53,7 @@ Your Podfile should look something like:
 The simpliest way to use JBChartView with your application is to drag and drop the <i>/Classes</i> folder into you're Xcode 5 project. It's also recommended you rename the <i>/Classes</i> folder to something more descriptive (ie. "<i>Jawbone - JBChartView</i>").
 
 <center>
-	<img src="https://raw.github.com/Jawbone/JBChartView/master/Screenshots/installation.png">
+	<img src="https://raw.github.com/ReDetection/JBChartView/negative-values/Screenshots/installation.png">
 </center>
 
 ## Usage
@@ -289,4 +292,4 @@ The min/max values are clamped to the ceiling and floor of the actual min/max va
 	
 ## License
 
-Usage is provided under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License</a> (v2.0). See <a href="https://github.com/Jawbone/JBChartView/blob/master/LICENSE">LICENSE</a> for full details.
+Usage is provided under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License</a> (v2.0). See <a href="https://github.com/ReDetection/JBChartView/blob/negative-values/LICENSE">LICENSE</a> for full details.
